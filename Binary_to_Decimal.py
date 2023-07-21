@@ -1,22 +1,19 @@
-# Program to convert binary to decimal
+def binario_a_decimal(binario):
+    decimal = 0
+    potencia = 0
 
+    while binario != 0:
+        digito = binario % 10
+        decimal += digito * (2 ** potencia)
+        binario //= 10
+        potencia += 1
 
-def binaryToDecimal(binary):
-    """
-    >>> binaryToDecimal(111110000)
-    496
-    >>> binaryToDecimal(10100)
-    20
-    >>> binaryToDecimal(101011)
-    43
-    """
-    decimal, i, n = 0, 0, 0
-    while binary != 0:
-        dec = binary % 10
-        decimal = decimal + dec * pow(2, i)
-        binary = binary // 10
-        i += 1
-    print(decimal)
+    return decimal
 
-
-binaryToDecimal(100)
+# Pedir al usuario que ingrese un número binario
+try:
+    num_binario = int(input("Ingrese un número binario: "))
+    decimal_resultado = binario_a_decimal(num_binario)
+    print(f"El número decimal equivalente es: {decimal_resultado}")
+except ValueError:
+    print("¡Error! Ingrese un número binario válido (solo 0s y 1s).")
